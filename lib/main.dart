@@ -1,3 +1,4 @@
+import 'package:carrot/config/color.dart';
 import 'package:carrot/page/splash/splash.dart';
 import 'package:carrot/providers/app_provider.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Carrot',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: AppColor().primary,
       ),
       home: SplashScreen()
     );

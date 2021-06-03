@@ -1,3 +1,4 @@
+import 'package:carrot/config/color.dart';
 import 'package:carrot/config/config.dart';
 import 'package:carrot/providers/app_provider.dart';
 import 'package:carrot/utils/dialog.dart';
@@ -73,7 +74,7 @@ class _DashboardState extends State<Dashboard> {
                         child: ElevatedButton(
                           onPressed: () => launchWhatsApp(context),
                           style: ElevatedButton.styleFrom(
-                            primary: Colors.amberAccent,
+                            primary: AppColor().primary,
                             elevation: 0,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12.0),
