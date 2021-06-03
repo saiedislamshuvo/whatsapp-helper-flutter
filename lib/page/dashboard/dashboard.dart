@@ -21,14 +21,15 @@ class _DashboardState extends State<Dashboard> {
       builder: (BuildContext context, AppProvider appProvider, Widget? child) {
         return Scaffold(
           key: _scaffoldKey,
+          backgroundColor: Colors.grey[200],
           appBar: AppBar(
-            backgroundColor: Colors.transparent,
+            backgroundColor: Colors.white,
             elevation: 0,
             actions: [
               TextButton(
                 onPressed: () => AppDialog.showExitAlert(context),
                 child: Text(
-                  "Edit",
+                  "Exit",
                   style: TextStyle(
                     fontSize: 18
                   ),
@@ -37,7 +38,11 @@ class _DashboardState extends State<Dashboard> {
             ],
           ),
           body: SafeArea(
-            child: SingleChildScrollView(
+            child: Container(
+              height: 200,
+              decoration: BoxDecoration(
+                color: Colors.white,
+              ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Column(
