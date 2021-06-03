@@ -1,4 +1,9 @@
+import 'package:carrot/config/config.dart';
+import 'package:carrot/providers/app_provider.dart';
+import 'package:carrot/utils/dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -6,6 +11,17 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+
+  TextEditingController _whatsAppNumberCtrl = TextEditingController();
+
+  launchWhatsApp(BuildContext context) async {
+    if(await canLaunch(Config().whatsappEndpoint + _whatsAppNumberCtrl.text)) {
+      await launch(Config().whatsappEndpoint + _whatsAppNumberCtrl.text);
+    } else {
+      AppDialog.showWhatsAppFailedAlert(context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,10 +51,16 @@ class _DashboardState extends State<Dashboard> {
                     borderRadius: BorderRadius.circular(12.0),
                   ),
                   child: TextFormField(
+                    controller: _whatsAppNumberCtrl,
+                    keyboardType: TextInputType.number,
                     decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.only(left: 10),
+                      contentPadding: const EdgeInsets.only(left: 10, top: 15),
                       border: InputBorder.none,
-                      hintText: "WhatsApp number..."
+                      hintText: "WhatsApp number...",
+                      suffixIcon: IconButton(
+                        onPressed: () => _whatsAppNumberCtrl.clear(),
+                        icon: Icon(Icons.refresh),
+                      )
                     ),
                   ),
                 ),
@@ -49,7 +71,7 @@ class _DashboardState extends State<Dashboard> {
                       child: Container(
                         height: 45,
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () => launchWhatsApp(context),
                           style: ElevatedButton.styleFrom(
                             primary: Colors.amberAccent,
                             elevation: 0,
@@ -58,7 +80,7 @@ class _DashboardState extends State<Dashboard> {
                             )
                           ),
                           child: Text(
-                            "SAVE",
+                            "WhatsApp Now",
                             style: TextStyle(
                               color: Colors.white,
                             ),
