@@ -1,4 +1,4 @@
-# carrot
+# Whatsapp Helper
 
 A new Flutter project.
 
