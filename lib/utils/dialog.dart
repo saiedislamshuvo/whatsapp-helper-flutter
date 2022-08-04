@@ -10,7 +10,7 @@ class AppDialog {
           title: Text(
             "Alert",
             style: TextStyle(
-              color: Theme.of(context).accentColor,
+              color: Theme.of(context).primaryColor,
               fontSize: 18
             ),
           ),
@@ -46,7 +46,7 @@ class AppDialog {
           title: Text(
             "Exit App",
             style: TextStyle(
-              color: Theme.of(context).accentColor,
+              color: Theme.of(context).primaryColor,
               fontSize: 18
             ),
           ),

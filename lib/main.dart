@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: Config().appName,
+      title: Config.appName,
       theme: ThemeData(
         primarySwatch: AppColor().secondary,
       ),

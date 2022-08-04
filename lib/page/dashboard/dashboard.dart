@@ -1,4 +1,4 @@
-import 'package:whatsapp_helper/config/color.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:whatsapp_helper/config/config.dart';
 import 'package:whatsapp_helper/providers/app_provider.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +23,12 @@ class _DashboardState extends State<Dashboard> {
           appBar: AppBar(
             backgroundColor: Colors.white,
             elevation: 0,
+            actions: [
+              IconButton(
+                onPressed: () => Share.share(Config.shareAppLink),
+                icon: Icon(Icons.share),
+              ),
+            ],
           ),
           body: SafeArea(
             child: Container(
@@ -38,7 +44,7 @@ class _DashboardState extends State<Dashboard> {
                     SizedBox(height: 10),
                     Container(
                       child: Text(
-                        Config().appName,
+                        Config.appName,
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 30,
@@ -64,7 +70,7 @@ class _DashboardState extends State<Dashboard> {
                                   controller: appProvider.countryCodeCtrl,
                                   keyboardType: TextInputType.number,
                                   decoration: InputDecoration(
-                                    contentPadding: const EdgeInsets.only(left: 10, top: 15),
+                                    contentPadding: const EdgeInsets.only(left: 10, top: 5),
                                     border: InputBorder.none,
                                   ),
                                 ),
@@ -87,7 +93,6 @@ class _DashboardState extends State<Dashboard> {
                                       icon: Icon(Icons.refresh),
                                     ),
                                   ),
-                                  onTap: () => appProvider.setTyping(true),
                                   validator: (String? value) {
                                     if (value == null || value == '') return "Please enter phone number";
                                   },

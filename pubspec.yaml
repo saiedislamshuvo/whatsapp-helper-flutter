@@ -30,6 +30,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   provider: ^5.0.0
   url_launcher: ^6.0.6
+  share_plus: ^2.0.12
 
 dev_dependencies:
   flutter_test:
