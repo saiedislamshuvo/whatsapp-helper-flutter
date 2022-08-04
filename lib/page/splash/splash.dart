@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:carrot/config/config.dart';
-import 'package:carrot/helpers/screen_navigation.dart';
-import 'package:carrot/page/dashboard/dashboard.dart';
+import 'package:whatsapp_helper/config/config.dart';
+import 'package:whatsapp_helper/helpers/screen_navigation.dart';
+import 'package:whatsapp_helper/page/dashboard/dashboard.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {

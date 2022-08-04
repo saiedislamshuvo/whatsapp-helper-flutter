@@ -1,6 +1,7 @@
-import 'package:carrot/config/color.dart';
-import 'package:carrot/page/splash/splash.dart';
-import 'package:carrot/providers/app_provider.dart';
+import 'package:whatsapp_helper/config/color.dart';
+import 'package:whatsapp_helper/config/config.dart';
+import 'package:whatsapp_helper/page/splash/splash.dart';
+import 'package:whatsapp_helper/providers/app_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -19,11 +20,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Carrot',
+      title: Config().appName,
       theme: ThemeData(
-        primarySwatch: AppColor().primary,
+        primarySwatch: AppColor().secondary,
       ),
-      home: SplashScreen()
+      home: SplashScreen(),
     );
   }
 }

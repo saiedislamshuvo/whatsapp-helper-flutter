@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
 class AppColor {
-  final MaterialColor primary = Colors.orange;
-  final MaterialColor secondary = Colors.deepOrange;
+  final Color primary = Colors.black87;
+  final MaterialColor secondary = Colors.orange;
 }

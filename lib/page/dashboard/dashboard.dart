@@ -1,10 +1,8 @@
-import 'package:carrot/config/color.dart';
-import 'package:carrot/config/config.dart';
-import 'package:carrot/providers/app_provider.dart';
-import 'package:carrot/utils/dialog.dart';
+import 'package:whatsapp_helper/config/color.dart';
+import 'package:whatsapp_helper/config/config.dart';
+import 'package:whatsapp_helper/providers/app_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -25,17 +23,6 @@ class _DashboardState extends State<Dashboard> {
           appBar: AppBar(
             backgroundColor: Colors.white,
             elevation: 0,
-            actions: [
-              TextButton(
-                onPressed: () => AppDialog.showExitAlert(context),
-                child: Text(
-                  "Exit",
-                  style: TextStyle(
-                    fontSize: 18
-                  ),
-                ),
-              )
-            ],
           ),
           body: SafeArea(
             child: Container(
@@ -51,11 +38,11 @@ class _DashboardState extends State<Dashboard> {
                     SizedBox(height: 10),
                     Container(
                       child: Text(
-                        "Carrot",
+                        Config().appName,
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 30,
-                          fontWeight: FontWeight.bold
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
@@ -64,28 +51,49 @@ class _DashboardState extends State<Dashboard> {
                       key: _formkey,
                       child: Column(
                         children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              color: Colors.grey[200],
-                              borderRadius: BorderRadius.circular(12.0),
-                            ),
-                            child: TextFormField(
-                              controller: appProvider.whatsAppNumberCtrl,
-                              keyboardType: TextInputType.number,
-                              decoration: InputDecoration(
-                                contentPadding: const EdgeInsets.only(left: 10, top: 15),
-                                border: InputBorder.none,
-                                hintText: "WhatsApp number...",
-                                suffixIcon: IconButton(
-                                  onPressed: () => appProvider.whatsAppNumberCtrl.clear(),
-                                  icon: Icon(Icons.refresh),
-                                )
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.15,
+                                decoration: BoxDecoration(
+                                  color: Colors.grey[200],
+                                  borderRadius: BorderRadius.circular(12.0),
+                                ),
+                                child: TextFormField(
+                                  controller: appProvider.countryCodeCtrl,
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(
+                                    contentPadding: const EdgeInsets.only(left: 10, top: 15),
+                                    border: InputBorder.none,
+                                  ),
+                                ),
                               ),
-                              onTap: () => appProvider.setTyping(true),
-                              validator: (String? value) {
-                                if(value?.length != 11) return "Phone number must be 11 digit.";
-                              },
-                            ),
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.7,
+                                decoration: BoxDecoration(
+                                  color: Colors.grey[200],
+                                  borderRadius: BorderRadius.circular(12.0),
+                                ),
+                                child: TextFormField(
+                                  controller: appProvider.whatsAppNumberCtrl,
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(
+                                    contentPadding: const EdgeInsets.only(left: 10, top: 15),
+                                    border: InputBorder.none,
+                                    hintText: "WhatsApp number...",
+                                    suffixIcon: IconButton(
+                                      onPressed: () => appProvider.whatsAppNumberCtrl.clear(),
+                                      icon: Icon(Icons.refresh),
+                                    ),
+                                  ),
+                                  onTap: () => appProvider.setTyping(true),
+                                  validator: (String? value) {
+                                    if (value == null || value == '') return "Please enter phone number";
+                                  },
+                                ),
+                              ),
+                            ],
                           ),
                           SizedBox(height: 10),
                           Row(
@@ -95,17 +103,17 @@ class _DashboardState extends State<Dashboard> {
                                   height: 45,
                                   child: ElevatedButton(
                                     onPressed: () {
-                                      if(_formkey.currentState!.validate()) {
+                                      if (_formkey.currentState!.validate()) {
                                         _formkey.currentState?.save();
                                         appProvider.launchWhatsApp(context);
                                       }
                                     },
                                     style: ElevatedButton.styleFrom(
-                                      primary: context.watch<AppProvider>().isTyping ? AppColor().primary : Colors.black87,
+                                      primary: Colors.black87,
                                       elevation: 0,
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(12.0),
-                                      )
+                                      ),
                                     ),
                                     child: Text(
                                       "WhatsApp Now",
@@ -117,7 +125,7 @@ class _DashboardState extends State<Dashboard> {
                                 ),
                               ),
                             ],
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -127,7 +135,7 @@ class _DashboardState extends State<Dashboard> {
             ),
           ),
         );
-      }
+      },
     );
   }
 }
